@@ -423,8 +423,16 @@ main {
   font-size: var(--fs-8);
   font-weight: var(--fw-300);
   width: max-content;
+  max-width: 100%;
   padding: 3px 12px;
   border-radius: 8px;
+}
+
+/* 第二个身份/学校徽章与上一枚留出间距；窄屏允许学校名换行 */
+.info-content .title + .title {
+  margin-top: 8px;
+  white-space: normal;
+  line-height: 1.45;
 }
 
 .info_more-btn {
