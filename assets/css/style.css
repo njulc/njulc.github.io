@@ -215,6 +215,57 @@ article.active {
   animation: fade 0.5s ease backwards;
 }
 
+/**
+ * Single-page stacked layout — 多长页纵向相接，锚点定位
+ */
+.main-content--stacked {
+  scroll-padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  padding-bottom: calc(76px + env(safe-area-inset-bottom));
+}
+
+.main-content--stacked > article.content-section {
+  display: block;
+  animation: none;
+  scroll-margin-top: 1rem;
+  scroll-margin-bottom: calc(72px + env(safe-area-inset-bottom));
+  margin-bottom: 16px;
+}
+
+@media (min-width: 580px) {
+
+  .main-content--stacked > article.content-section {
+    scroll-margin-top: 1.25rem;
+    margin-bottom: 25px;
+  }
+
+}
+
+@media (min-width: 1024px) {
+
+  .main-content--stacked {
+    padding-bottom: 0;
+    scroll-padding-bottom: 0;
+  }
+
+  .main-content--stacked > article.content-section {
+    scroll-margin-bottom: 0;
+    scroll-margin-top: 5.75rem;
+  }
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+}
+
 @keyframes fade {
   0% { opacity: 0; }
   100% { opacity: 1; }
@@ -316,7 +367,7 @@ main {
 
 .sidebar {
   margin-bottom: 15px;
-  max-height: 112px;
+  max-height: 224px;
   overflow: hidden;
   transition: var(--transition-2);
 }
@@ -334,6 +385,12 @@ main {
 .avatar-box {
   background: var(--bg-gradient-onyx);
   border-radius: 20px;
+}
+
+.avatar-box img {
+  width: 100px;
+  height: auto;
+  display: block;
 }
 
 .info-content .name {
@@ -1329,7 +1386,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar {
-    max-height: 180px;
+    max-height: 198px;
     margin-bottom: 30px;
   }
 
@@ -1339,7 +1396,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .avatar-box { border-radius: 30px; }
 
-  .avatar-box img { width: 120px; }
+  .avatar-box img { width: 360px; }
 
   .info-content .name { margin-bottom: 15px; }
 
@@ -1835,7 +1892,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar-info { flex-direction: column; }
 
-  .avatar-box img { width: 150px; }
+  .avatar-box img { width: 450px; }
 
   .info-content .name {
     white-space: nowrap;
@@ -1880,3 +1937,64 @@ textarea.form-input::-webkit-resizer { display: none; }
   .timeline-text { max-width: 700px; }
 
 }
+
+
+
+
+/*-----------------------------------*\
+  #ACADEMIC PROFILE — 学术长页样式（与主题变量一致）
+\*-----------------------------------*/
+
+article .academic-section { margin-bottom: 4px; }
+
+.academic-section-title {
+  color: var(--white-2);
+  margin-bottom: 14px;
+}
+
+.publication-subheading {
+  margin-top: 22px;
+  margin-bottom: 10px;
+  color: var(--white-2);
+  font-weight: var(--fw-500);
+}
+
+.academic-section .publication-subheading:first-of-type { margin-top: 8px; }
+
+.academic-section .content-card {
+  padding: 18px 20px;
+}
+
+.cv-list li { margin-bottom: 12px; }
+
+.cv-list li:last-child { margin-bottom: 0; }
+
+.cv-list-flat li { margin-bottom: 6px; }
+
+.timeline-text-indent {
+  margin-top: 6px !important;
+  padding-left: 10px;
+  border-left: 2px solid var(--jet);
+}
+
+.reviewer-label { font-weight: var(--fw-500); }
+
+.academic-section a {
+  display: inline;
+  color: var(--orange-yellow-crayola);
+  text-decoration: underline;
+  transition: color var(--transition-1);
+}
+
+.academic-section a:hover { color: var(--white-1); }
+
+.academic-section time {
+  display: inline;
+  margin-right: 6px;
+  color: var(--vegas-gold);
+  font-weight: var(--fw-500);
+}
+
+article .academic-section cite { font-style: italic; }
+
+article .academic-section .timeline-text i { color: var(--light-gray-70); }
