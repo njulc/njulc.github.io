@@ -433,6 +433,12 @@ main {
   margin-top: 8px;
   white-space: normal;
   line-height: 1.45;
+  /* 中文：避免 flex 子项 min-width:auto 导致长英文行撑破侧栏 / PDF 裁切 */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  text-align: center;
 }
 
 .info_more-btn {
@@ -1917,9 +1923,12 @@ textarea.form-input::-webkit-resizer { display: none; }
     gap: 25px;
   }
 
+  /* 勿再使用 75% 定宽 + 大头像侧栏，否则会超过 main 的 max-width 造成横向溢出 */
   .main-content {
-    min-width: 75%;
-    width: 75%;
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    max-width: none;
     margin: 0;
   }
 
@@ -1945,6 +1954,13 @@ textarea.form-input::-webkit-resizer { display: none; }
   .sidebar-info { flex-direction: column; }
 
   .avatar-box img { width: 450px; }
+
+  .info-content {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 
   .info-content .name {
     white-space: nowrap;

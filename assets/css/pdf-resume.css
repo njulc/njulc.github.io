@@ -1,0 +1,330 @@
+/**
+ * One-page resume layout for PDF export only.
+ * 仅在导出 PDF 时为 <html> 添加 class="pdf-resume" 后生效；不影响正常站点。
+ */
+
+/* -------------------------------------------------------------------------- */
+/* 全局：紧凑字号与取消多页分段（覆盖 style.css 中的分页规则） */
+
+html.pdf-resume {
+  --fs-1: 15px;
+  --fs-2: 12px;
+  --fs-3: 13px;
+  --fs-4: 10.5px;
+  --fs-5: 10px;
+  --fs-6: 9px;
+  --fs-7: 8.5px;
+  --fs-8: 8px;
+}
+
+html.pdf-resume body {
+  background: var(--smoky-black);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+html.pdf-resume .main-content--stacked > article.content-section,
+html.pdf-resume .main-content--stacked > article.content-section ~ article.content-section {
+  break-before: auto !important;
+  page-break-before: auto !important;
+  break-inside: auto !important;
+  page-break-inside: auto !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 隐藏底栏导航与侧栏交互 */
+
+html.pdf-resume .navbar {
+  display: none !important;
+}
+
+html.pdf-resume .info_more-btn {
+  display: none !important;
+}
+
+/* 社交链接为占位 #，简历 PDF 中省略 */
+html.pdf-resume .social-list {
+  display: none !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 主布局：单列、顶栏头像+身份+联系方式一体 */
+
+html.pdf-resume main {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 6px 8px !important;
+  gap: 6px !important;
+}
+
+html.pdf-resume .sidebar,
+html.pdf-resume article {
+  box-shadow: none !important;
+  border-radius: 10px !important;
+  padding: 8px 10px !important;
+}
+
+html.pdf-resume .sidebar {
+  position: static !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  align-self: stretch !important;
+  flex-shrink: 0 !important;
+  padding-top: 8px !important;
+}
+
+html.pdf-resume .sidebar:not(.active),
+html.pdf-resume .sidebar.active {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+html.pdf-resume .sidebar-info {
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+}
+
+html.pdf-resume .avatar-box img {
+  width: 64px !important;
+  height: auto !important;
+}
+
+html.pdf-resume .avatar-box {
+  border-radius: 12px !important;
+  flex-shrink: 0;
+}
+
+html.pdf-resume .info-content {
+  min-width: 0 !important;
+  flex: 1 !important;
+  text-align: left !important;
+}
+
+html.pdf-resume .info-content .name {
+  font-size: 14px !important;
+  white-space: normal !important;
+  text-align: left !important;
+  margin-bottom: 4px !important;
+  line-height: 1.15;
+}
+
+html.pdf-resume .info-content .title {
+  margin: 0 0 4px 0 !important;
+  padding: 2px 8px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  display: inline-block !important;
+  font-size: 8px !important;
+}
+
+html.pdf-resume .info-content .title + .title {
+  display: block !important;
+  margin-top: 3px !important;
+  text-align: left !important;
+}
+
+/* 中文：Email / Location 同一行；勿让 flex-shrink + min-width:0 把列压成一字宽 */
+html.pdf-resume .sidebar-info_more {
+  opacity: 1 !important;
+  visibility: visible !important;
+  margin-top: 6px !important;
+  padding-top: 4px !important;
+  border-top: 1px solid var(--jet);
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+html.pdf-resume .separator {
+  display: none !important;
+}
+
+html.pdf-resume .contacts-list {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+html.pdf-resume .contacts-list > .contact-item {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 4px !important;
+  flex: 0 0 auto !important;
+  min-width: auto !important;
+  max-width: none !important;
+}
+
+html.pdf-resume .contacts-list > .contact-item:not(:first-child)::before {
+  content: "|" !important;
+  color: var(--light-gray-70);
+  font-size: 8px !important;
+  margin: 0 10px !important;
+  font-weight: var(--fw-300);
+  flex-shrink: 0;
+}
+
+html.pdf-resume .contacts-list .contact-item .icon-box {
+  display: none !important;
+}
+
+html.pdf-resume .contact-info {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 3px !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: auto !important;
+}
+
+html.pdf-resume .contact-title {
+  font-size: 8px !important;
+  flex-shrink: 0;
+  margin: 0 !important;
+  white-space: nowrap !important;
+}
+
+html.pdf-resume .contact-title::after {
+  content: ":";
+}
+
+html.pdf-resume .contact-info .contact-link,
+html.pdf-resume .contact-info address {
+  display: inline !important;
+  font-size: 8.5px !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  max-width: none !important;
+  text-overflow: unset !important;
+  /* 覆盖全局 anywhere：在空间足够时单行展示，避免窄列下逐字断行 */
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+html.pdf-resume .icon-box {
+  width: 22px !important;
+  height: 22px !important;
+  font-size: 12px !important;
+}
+
+html.pdf-resume ion-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 正文区块：小节标题 + 紧凑卡片 */
+
+html.pdf-resume .main-content {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+html.pdf-resume .main-content--stacked {
+  padding-bottom: 0 !important;
+  scroll-padding-bottom: 0 !important;
+}
+
+html.pdf-resume .main-content--stacked > article.content-section {
+  margin-bottom: 5px !important;
+  scroll-margin: 0 !important;
+}
+
+html.pdf-resume .content-section .article-title,
+html.pdf-resume .content-section .h2 {
+  font-size: 10px !important;
+  margin-bottom: 4px !important;
+  padding-bottom: 3px !important;
+  border-bottom: 1px solid var(--jet);
+  letter-spacing: 0.02em;
+}
+
+/* 中文：禁止主题自带 ::after 渐变条叠在字上（pdf-resume 已用 border-bottom） */
+html.pdf-resume .content-section .article-title::after {
+  display: none !important;
+  content: none !important;
+}
+
+html.pdf-resume .about-text {
+  font-size: 8.5px !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+}
+
+html.pdf-resume .about-text br {
+  display: none;
+}
+
+html.pdf-resume .about-text p {
+  margin: 0;
+}
+
+html.pdf-resume article .academic-section {
+  margin-bottom: 2px !important;
+}
+
+html.pdf-resume .academic-section .content-card {
+  padding: 5px 7px !important;
+  margin: 0 !important;
+}
+
+html.pdf-resume .publication-subheading {
+  font-size: 8.5px !important;
+  margin-top: 6px !important;
+  margin-bottom: 3px !important;
+}
+
+html.pdf-resume .publication-subheading:first-of-type {
+  margin-top: 2px !important;
+}
+
+html.pdf-resume .cv-list li {
+  margin-bottom: 3px !important;
+}
+
+html.pdf-resume .timeline-text {
+  font-size: 8px !important;
+  line-height: 1.35 !important;
+  max-width: none !important;
+}
+
+html.pdf-resume .reviewer-card br {
+  display: none !important;
+}
+
+html.pdf-resume .reviewer-label {
+  display: inline !important;
+  margin-right: 6px !important;
+}
+
+html.pdf-resume .cv-list-flat li {
+  margin-bottom: 2px !important;
+}
+
+html.pdf-resume .academic-section time {
+  font-size: 8px !important;
+}
+
+html.pdf-resume .academic-section cite {
+  font-size: inherit;
+}
